@@ -12,11 +12,11 @@ window.isLoggedIn = false;
 const Login = () => {
     const [popupStyle, showPopup] = useState("hide")
     const navigate = useNavigate();
-    const popup = () => {
-        showPopup("login-popup")
+    const loginUser = () => {
         navigate("/bills")
-        setTimeout(() => showPopup("hide"), 3000)
-        window.isLoggedIn = true;
+    }
+    const registerUser = () => {
+        navigate("/register")
     }
 
     const onSuccess = e => {
@@ -31,24 +31,27 @@ const Login = () => {
 
     return (
         <div className="page">
-            {/* <img src={Calculator} className="logo-img" width="30%" /> */}
-
             <div className="cover">
-                {/* <h1>LOGIN</h1> */}
-                <img src={goDutchLogo} className="logo-img" width="60%" />
+                <img src={goDutchLogo} className="logo-img" width="80%" />
+                <div className = "login-form">
+                    <input className = "login-input" type="text" placeholder="EMAIL ID" />
+                    <input className = "login-input" type="password" placeholder="PASSWORD" />
 
-                <input type="text" placeholder="EMAIL ID" />
-                <input type="password" placeholder="PASSWORD" />
+                    <div className="login-btn" onClick={loginUser}>
+                        <label className="login-txt"> LOGIN </label>
+                    </div>
+                    {/* <hr className="seperator"/> */}
+                    <div className="alt-login" onClick={registerUser}>
+                        <label className="continue-google-txt"> REGISTER </label>
+                    </div>
 
-                <div className="login-btn" onClick={popup}>
-                    <label className="login-txt"> LOGIN </label>
+                    <div className="alt-login">
+                        <img src={google} height="24" />
+                        <label className="continue-google-txt">CONTINUE WITH GOOGLE </label>
+                    </div>
                 </div>
-                <hr className="seperator" />
 
-                <div className="alt-login" onClick={popup}>
-                    <img src={google} height="25" />
-                    <label className="continue-google-txt">CONTINUE WITH GOOGLE </label>
-                </div>
+                
                 {/* <GoogleLogin className="blue"
                         //    clientId="79474543031-tmjo35916ufn421ej3u1i2ljao2apr4s.apps.googleusercontent.com"
                         buttonText=""
