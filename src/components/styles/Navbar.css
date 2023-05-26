@@ -9,12 +9,12 @@ header {
 }
 
 .logo-h{
-    width: 20%;
+    width: 14%;
 }
 
 nav a {
 	margin: 0 1rem;
-	color: var(--textColor);
+	color: white;
 	text-decoration: none;
 }
 
@@ -39,8 +39,18 @@ nav {
 	display: flex;
 	align-items: center;
 }
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+  }
+   
+  .sticky + .content {
+	padding-top: 60px;
+  }
 
-@media only screen and (max-width: 1024px) {
+
+@media only screen and (max-width: 600px) {
 	header .nav-btn {
 		visibility: visible;
 		opacity: 1;
@@ -74,4 +84,5 @@ nav {
 	nav a {
 		font-size: 1.5rem;
 	}
+	
 }

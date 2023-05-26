@@ -3,6 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import "./styles/Navbar.css"
 import goDutchLogo from "../assets/icons/goDutchLogo.png"
 import { Outlet } from "react-router-dom";
+import GoDutchWhite from "../assets/icons/GoDutchWhite.png"
 
 
 function Navbar() {
@@ -15,12 +16,11 @@ function Navbar() {
 	return (
         <>
 		<header>
-			<img src={goDutchLogo} className="logo-h" />
+			<img src={GoDutchWhite} className="logo-h" />
 			<nav ref={navRef}>
 				<a href="/bills">Bills</a>
 				<a href="/invitations">Invitations</a>
 				<a href="/newBill">New Bill</a>
-	
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>

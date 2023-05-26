@@ -1,0 +1,45 @@
+.create-bill-bg{
+    position:  fixed;
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+}
+
+.popup{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal{
+    border-radius: 2%;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    background-color: var(--gddarkest);
+}
+
+.close-btn{
+    font-size: x-large;
+    place-self: end;
+}
+
+.form{
+    padding: 2%;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-input{
+    margin: 2%;
+}
+
+.create-bill-text{
+    align-self: center;
+}

@@ -1,27 +1,51 @@
 import React, { useState } from "react";
 // import { GoogleLogin } from '@react-oauth/google';
 import goDutchLogo from "../assets/icons/goDutchLogo.png"
-import Calculator from "../assets/icons/Calculator.svg"
 import google from "../assets/icons/google.png"
 import "./styles/Login.css"
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Receipt from "../assets/icons/Receipt.png"
 <GoogleOAuthProvider clientId="<your_client_id>">...</GoogleOAuthProvider>;
 
 window.isLoggedIn = false;
 const Login = () => {
     const [popupStyle, showPopup] = useState("hide")
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate();
-    const loginUser = () => {
-        navigate("/bills")
-    }
-    const registerUser = () => {
-        navigate("/register")
+
+
+    async function loginUser(event) {
+        event.preventDefault();
+
+        const response = await fetch('http://localhost:1337/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        })
+
+        const data = await response.json()
+        console.log(data)
+
+        if (data.user) {
+			localStorage.setItem('token', data.user)
+			alert('Login successful')
+			window.location.href = '/bills'
+		} else {
+			alert('Please check your username and password')
+		}
+
     }
 
-    const onSuccess = e => {
-        alert("User signed in")
-        console.log(e)
+    const registerUser = () => {
+        navigate("/register")
     }
 
     const onFailure = e => {
@@ -31,36 +55,35 @@ const Login = () => {
 
     return (
         <div className="page">
+            <img src={Receipt} className="main-img" width="40%" />
             <div className="cover">
-                <img src={goDutchLogo} className="logo-img" width="80%" />
-                <div className = "login-form">
-                    <input className = "login-input" type="text" placeholder="EMAIL ID" />
-                    <input className = "login-input" type="password" placeholder="PASSWORD" />
+                <img src={goDutchLogo} className="logo-img" width="60%" />
+                <form className="form-edit" onSubmit={loginUser}>
+                    <input className="text-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="EMAIL ID" />
 
-                    <div className="login-btn" onClick={loginUser}>
-                        <label className="login-txt"> LOGIN </label>
-                    </div>
-                    {/* <hr className="seperator"/> */}
-                    <div className="alt-login" onClick={registerUser}>
+                    <input className="text-input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        placeholder="PASSWORD" />
+
+                    <button type="submit" className="submit-btn">
+                       <label className="submit-txt">
+                            LOGIN
+                        </label>
+                    </button>
+                    
+                    <button type="button" className="alt-login" onClick={registerUser}>
                         <label className="continue-google-txt"> REGISTER </label>
-                    </div>
-
-                    <div className="alt-login">
+                    </button>
+                    <button type="button" className="alt-login">
                         <img src={google} height="24" />
-                        <label className="continue-google-txt">CONTINUE WITH GOOGLE </label>
-                    </div>
-                </div>
-
-                
-                {/* <GoogleLogin className="blue"
-                        //    clientId="79474543031-tmjo35916ufn421ej3u1i2ljao2apr4s.apps.googleusercontent.com"
-                        buttonText=""
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                        isSignedIn={false}
-                        icon={false}
-                        theme="dark"  // alternative is light, which is white
-                    /> */}
+                        <label className="continue-google-txt"> CONTINUE WITH GOOGLE </label></button>
+            </form>
             </div>
 
             <div className={popupStyle}>

@@ -1,0 +1,66 @@
+.body {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--gdlightest);
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+}
+
+.wrapper {
+    margin: 2rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .vl {
+    border-left: 2px solid grey;
+    height: 100%;
+  }
+
+
+  .card {
+    min-width: 28rem;
+    padding: 1%;
+    background-color: white;
+    /* box-shadow: 0 0.188em 1.550em rgb(156, 156, 156); */
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+    align-items: center;
+  
+    &__description {
+      line-height: 1.2rem;
+    }
+}
+
+.create-bill-button{
+  display:block;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-bottom: 5%;
+  align-self: center;
+}
+
+.create-bill-button:hover { transform: scale(1.25);}
+
+.create-bill-text{
+    font-weight:bold;
+    opacity: 0.7;
+    align-self: center;
+}
+
+.card:hover { transform: scale(1);}
+
+
+/* Desktop view */
+@media screen and (min-width: 600px) {
+    /* .wrapper {
+      grid-template-columns: 1fr 1fr;
+    } */
+  
+    .card {
+      min-width: 14rem;
+    }
+}

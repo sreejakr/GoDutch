@@ -13,11 +13,8 @@ const App = (props) => {
 
   return (
     <div style={{ fontFamily: 'Avenir' }}>
-      {/* <Navbar /> */}
       <Router>
-        {/* <AuthProvider> */}
         <Routes>
-          {/* <Route path="/chats" component={Chats} /> */}
           <Route element={<WithoutNav />}>
             <Route path='/' element={<Login />} />
           </Route>

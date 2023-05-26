@@ -15,6 +15,10 @@ code {
 :root {
   --gdlightest: #F0E9D2;
   --gdlight: #E6DDC4;
-  --gddark:#678983;
-  --gddarkest:#181D31;
+  --gddark:#49c5b6;
+  --gddarkest:#2779a7;
+  --gdbg: #282c5c;
+  --gdbright: #a8ccec;
+  --gdred: #DF6C4F;
+  --gdpink: #e88484;
 }
